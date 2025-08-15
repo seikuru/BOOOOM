@@ -91,15 +91,10 @@ public class Bombeffects : MonoBehaviour
             {
 
                 PlayerRigidbodies[i].isKinematic = false;
-                if (P[i].TryGetComponent<enemiesshot>(out enemiesshot ES))
+                if (P[i].TryGetComponent<EnemiesAttack>(out EnemiesAttack EA))
                 {
-                    ES.willDestoroy = true;
+                    EA.willDestoroy = true;
                     
-                }
-                if (P[i].TryGetComponent<ChargeAttack>(out ChargeAttack CA))
-                {
-                    CA.willDestoroy = true;
-
                 }
                 if(P[i].TryGetComponent<enemyMove>(out enemyMove EM))
                 {
