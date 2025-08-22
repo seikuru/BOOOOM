@@ -63,16 +63,15 @@ public class bomb : MonoBehaviour
         BombsQueue.Enqueue(Spawned_Bomb);
     }
 
-    public void InstantiateBomb(float percentage, Vector3 direction)
+    public void InstantiateBomb(float percentage, Vector3 direction, Quaternion rotation)
     {
         // プレイヤーの前方位置にオフセットして爆弾を生成
         // float spawnDistance = 1.0f; // 必要に応じて設定
         Vector3 spawnPos = this.transform.position + direction.normalized * spawnDistance;
 
         // 向いている方向に回転を合わせて投擲（direction方向に向ける）
-        Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
-
-        PlayerModelRotate(rotation);
+        //Quaternion rotation = Quaternion.LookRotation(direction, Vector3.up);
+        //PlayerModelRotate(rotation);
 
         // 爆弾を生成
         GameObject Spawned_Bomb = Instantiate(Bomb, spawnPos, rotation);

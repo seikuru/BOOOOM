@@ -16,17 +16,14 @@ public class Bombeffects : MonoBehaviour
     EnemyCount EnemyCountText;
 
     public float _bombradius { get { return BombRadius; } set { BombRadius = value; } }
-    
-    int GetKillCountValue()
+
+    /// <summary>
+    /// 爆弾が与える力の大きさを追加するパラメータの数値を取得
+    /// </summary>
+    /// <returns>追加するパラメータの数値</returns>
+    float GetBombAddStrange()
     {
-        int count = DestroyCountUI.Instance.GetTo10KillCount();
-
-        int resurt = 0;
-
-        for (int i = 1; i <= count; i++)
-            resurt += i;
-
-        return resurt;
+        return BombExtraParameter.GetAddStrange();      
     } 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -49,8 +46,9 @@ public class Bombeffects : MonoBehaviour
     public void Bakuhatu()
     {
         float BombStrangeValue = BombStrange;
+
         if (GetKillCount)
-            BombStrangeValue += (float)GetKillCountValue();// * BombAddPowerValue;
+            BombStrangeValue += GetBombAddStrange();
 
         Collider[] hits = Physics.OverlapSphere(this.transform.position, BombRadius, PlayerMask);
         //爆弾が爆発した際、爆弾を中心に、爆弾の影響範囲下にある、影響を受けるレイヤーを探す。
@@ -74,10 +72,10 @@ public class Bombeffects : MonoBehaviour
 
         for (int i = 0; i < P.Length; i++)
         {
-            //Debug.Log("Obstcle" + P[i].tag);
-            if (P[i].tag == "Obstcle")
+            //Debug.Log("Obstacle" + P[i].tag);
+            if (P[i].tag == "Obstacle")
             {
-                if (P[i].TryGetComponent<ObstacleObject>(out ObstacleObject obstacle))
+                if (P[i].TryGetComponent<ObstacleExplosion>(out ObstacleExplosion obstacle))
                 {
                     obstacle.Explosion(transform.position, BombStrangeValue);
                     continue;
