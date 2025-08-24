@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class bomb : MonoBehaviour
 {
     [SerializeField] GameObject Bomb;
-    [SerializeField] GameObject BombSpawnPosition;//前に投げる際に参照する位置
+    [SerializeField] GameObject ThrowBombSpawnPosition;//前に投げる際に参照する位置
     [SerializeField] GameObject JumpBombSpawnPosition;//下に投げる際に参照する位置
     [SerializeField] GameObject BrinkBombSpawnPosition;//後ろに投げる際に参照する位置
     [SerializeField] GameObject PlayerModelObject;
@@ -164,7 +164,7 @@ public class bomb : MonoBehaviour
 
 
             GameObject Spawned_Bomb;
-            Spawned_Bomb = Instantiate(Bomb, BombSpawnPosition.transform.position, Quaternion.identity);
+            Spawned_Bomb = Instantiate(Bomb, ThrowBombSpawnPosition.transform.position, Quaternion.identity);
             Spawned_Bomb.GetComponent<Rigidbody>().AddForce(this.transform.forward * (Bombthrow + this.gameObject.GetComponent<Rigidbody>().linearVelocity.magnitude /** 0.8f*/ ), ForceMode.Impulse);
 
             

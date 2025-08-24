@@ -17,12 +17,13 @@ public class PlayerCamera : MonoBehaviour
     {
 
         Vector3 localAngle = transform.localEulerAngles;
+
         localAngle.x -= Input.GetAxis("Mouse Y") * rotateSpeed;
+
         transform.localEulerAngles = localAngle;
 
         Vector3 angle = transform.eulerAngles;
         angle.y += Input.GetAxis("Mouse X") * rotateSpeed;
         transform.eulerAngles = angle;
-
     }
 }
