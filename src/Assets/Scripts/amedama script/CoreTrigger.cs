@@ -15,7 +15,7 @@ public class CoreTrigger : MonoBehaviour
             foreach (Rigidbody r in rigidbodies)
             {
 
-                r.tag = "enemies";
+                r.tag = "enemy";
 
                 if (r.gameObject == gameObject) { continue; }
 
@@ -24,7 +24,7 @@ public class CoreTrigger : MonoBehaviour
             }
 
             Transform ParentRigidbody = transform.root;
-            ParentRigidbody.tag = "enemies";
+            ParentRigidbody.tag = "enemy";
 
         }
     }

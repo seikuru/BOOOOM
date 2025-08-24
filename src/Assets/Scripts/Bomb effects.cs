@@ -6,7 +6,7 @@ using UnityEngine;
 public class Bombeffects : MonoBehaviour
 {
     Rigidbody[] PlayerRigidbodies;
-    [SerializeField] LayerMask PlayerMask;//爆発の影響を受けるレイヤーを指定
+    [SerializeField] LayerMask InfluencedMask;//爆発の影響を受けるレイヤーを指定
     [SerializeField] float DestroyEnemyTimer = 3f;//敵が爆発の影響を受けてから何秒で消えるか
     [SerializeField] float BombStrange = 5.0f;//爆弾が与える力の大きさ
     [SerializeField] float BombRadius = 10.0f;//爆発の影響の範囲
@@ -29,11 +29,12 @@ public class Bombeffects : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if(PlayerMask == LayerMask.GetMask()) 
-            PlayerMask = LayerMask.GetMask("Player", "enemy" , "enemyCore");
-
-        EnemyCountText = GameObject.Find("EnemyCount").GetComponent<EnemyCount>();
-
+        if(InfluencedMask == LayerMask.GetMask()) 
+            InfluencedMask = LayerMask.GetMask("Player", "enemy" , "enemyCore");
+        if (GameObject.Find("EnemyCount") != null)
+        {
+            EnemyCountText = GameObject.Find("EnemyCount").GetComponent<EnemyCount>();
+        }
     }
 
    
@@ -50,7 +51,7 @@ public class Bombeffects : MonoBehaviour
         if (GetKillCount)
             BombStrangeValue += GetBombAddStrange();
 
-        Collider[] hits = Physics.OverlapSphere(this.transform.position, BombRadius, PlayerMask);
+        Collider[] hits = Physics.OverlapSphere(this.transform.position, BombRadius, InfluencedMask);
         //爆弾が爆発した際、爆弾を中心に、爆弾の影響範囲下にある、影響を受けるレイヤーを探す。
 
         GameObject[] P = { };
@@ -85,7 +86,7 @@ public class Bombeffects : MonoBehaviour
             PlayerRigidbodies[i].linearVelocity = PlayerRigidbodies[i].linearVelocity * 0.7f + (P[i].transform.position - this.transform.position).normalized * BombStrangeValue;
             //最後に受けた爆発の影響が出やすくなるように今のVectorに0,7を掛ける
 
-            if (P[i].tag == "enemies")
+            if (P[i].tag == "enemy")
             {
 
                 PlayerRigidbodies[i].isKinematic = false;

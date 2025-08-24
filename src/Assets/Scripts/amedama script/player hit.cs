@@ -15,8 +15,12 @@ public class playerhit : MonoBehaviour
     void Start()
     {
         player = GetComponent<Player>();
-        EnemyCountText = GameObject.Find("HPCount").GetComponent<TextMeshProUGUI>();
-        EnemyCountText.text = player.PlayerHP.ToString();
+        if (GameObject.Find("HPCount") != null)
+        {
+            EnemyCountText = GameObject.Find("HPCount").GetComponent<TextMeshProUGUI>();
+            EnemyCountText.text = player.PlayerHP.ToString();
+        }
+        
         waitforSec = new WaitForSeconds(InvincibleTime);//waitforSecondsのserialize
         
     }
@@ -35,7 +39,7 @@ public class playerhit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if((other.tag == "enemies" || other.tag == "Attack") && Invincible == false)
+        if((other.tag == "enemy" || other.tag == "Attack") && Invincible == false)
         {
             player.PlayerHP--;
             EnemyCountText.text = player.PlayerHP.ToString();
@@ -48,7 +52,7 @@ public class playerhit : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
 
-        if ((collision.gameObject.tag == "enemies" || collision.gameObject.tag == "Attack") && Invincible == false)
+        if ((collision.gameObject.tag == "enemy" || collision.gameObject.tag == "Attack") && Invincible == false)
         {
 
             player.PlayerHP--;

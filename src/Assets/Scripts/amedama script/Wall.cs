@@ -8,7 +8,7 @@ public class Wall : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "enemies")
+        if (collision.gameObject.tag == "enemy")
         {           
             Destroy(collision.gameObject);  
         }

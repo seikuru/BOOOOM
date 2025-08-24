@@ -16,7 +16,7 @@ public class BombColor : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "enemies")
+        if (other.gameObject.tag == "enemy")
         {
             Renderer[] renderers = gameObject.GetComponentsInParent<Renderer>();
 
@@ -30,7 +30,7 @@ public class BombColor : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "enemies")
+        if (other.gameObject.tag == "enemy")
         {
             Renderer[] renderers = gameObject.GetComponentsInParent<Renderer>();
 
