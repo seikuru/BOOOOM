@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InfluencedMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
   DestroyEnemyTimer: 3
   BombStrange: 30
   BombRadius: 20

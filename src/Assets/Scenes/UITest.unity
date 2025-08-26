@@ -1512,7 +1512,7 @@ PrefabInstance:
       objectReference: {fileID: 56299714}
     - target: {fileID: 892774487872043940, guid: debb35ea07dd7694b89e0c8318484e11, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 892774487872043940, guid: debb35ea07dd7694b89e0c8318484e11, type: 3}
       propertyPath: playerAction
@@ -1532,7 +1532,7 @@ PrefabInstance:
       objectReference: {fileID: 56299714}
     - target: {fileID: 6517762818485769081, guid: debb35ea07dd7694b89e0c8318484e11, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6517762818485769081, guid: debb35ea07dd7694b89e0c8318484e11, type: 3}
       propertyPath: playerAction
@@ -1775,6 +1775,10 @@ PrefabInstance:
     - target: {fileID: 3557779053271806445, guid: 4c5e65352373962428b7994b5eaeb76d, type: 3}
       propertyPath: m_Name
       value: CountDownGauge
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074880471191615865, guid: 4c5e65352373962428b7994b5eaeb76d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
