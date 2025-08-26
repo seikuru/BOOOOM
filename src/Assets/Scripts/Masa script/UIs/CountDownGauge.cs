@@ -9,11 +9,9 @@ public class CountDownGauge : MonoBehaviour
     [SerializeField] CountDownTimer countDownTimer; // カウント値を取得するタイマー
 
     [SerializeField] RectTransform BackGround_Rtransform; // ゲージ背景のRectTransform
-
-    [SerializeField] RectTransform CountGauge_Rtransform; // ゲージバーのRectTransform
-
     [SerializeField] Image BackGroundImage; // ゲージ背景のImage
 
+    [SerializeField] RectTransform CountGauge_Rtransform; // ゲージバーのRectTransform
     [SerializeField] Image CountGaugeImage; // ゲージバーのImage
 
     [SerializeField] int MaxGaugeValue = 10000; // ゲージの最大値（循環する基準値）

@@ -15,6 +15,7 @@ public class FallBuildingCounter : MonoBehaviour
     [SerializeField] string TagName = "Building"; // 対象建物のタグ名
 
     [SerializeField] int toLillCountThreshold = 15; // ゲージ色変化の閾値
+
     [Range(0f, 1f)]
     [SerializeField] float ClearValue; // クリア条件の達成率（0.0～1.0）
 

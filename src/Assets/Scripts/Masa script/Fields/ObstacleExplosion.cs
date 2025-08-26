@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class ObstacleExplosion : MonoBehaviour
 {
-    
     /// 障害物が破壊されたときの演出を行うクラス
 
     [SerializeField] GameObject DustPrehab; // 爆発した時の破片プレハブ
@@ -50,6 +49,9 @@ public class ObstacleExplosion : MonoBehaviour
 
                     // 破片オブジェクトを生成
                     GameObject dust = Instantiate(DustPrehab, createPos, Quaternion.identity);
+
+                    // 破片サイズを変更
+                    dust.transform.localScale = Vector3.one * DustDivisionSize; 
 
                     dust.SetActive(true);
 
