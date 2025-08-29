@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RandomBuilding : MonoBehaviour
+public class RandomBuildingSpawn : MonoBehaviour
 {
     /// ランダムに建物のプレハブを生成するクラス
 

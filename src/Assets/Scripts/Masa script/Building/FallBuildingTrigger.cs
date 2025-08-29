@@ -1,8 +1,6 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class FallTrigger : MonoBehaviour
+public class FallBuildingTrigger : MonoBehaviour
 {
 　　/// 落ちた建物の残骸を判定するクラス
 

@@ -8,14 +8,12 @@ public class KillCountGauge : MonoBehaviour
     /// 閾値ごとに段階的に色が変化し、各段階内での進行度をバーで表示
 
     [SerializeField] RectTransform BackGround_Rtransform; // ゲージ背景のRectTransform
+    [SerializeField] Image BackGroundImage; // ゲージ背景のImage
 
     [SerializeField] RectTransform CountGauge_Rtransform; // ゲージバーのRectTransform
-
-    [SerializeField] Image backGroundImage; // ゲージ背景のImage
-
     [SerializeField] Image CountGaugeImage; // ゲージバーのImage
 
-    [SerializeField] List<Color> colorList; // 段階ごとの色設定リスト
+    [SerializeField] List<Color> ColorsList; // 段階ごとの色設定リスト
 
     /// <summary>
     /// 撃破数に応じてゲージの色と進行度を更新
@@ -30,17 +28,17 @@ public class KillCountGauge : MonoBehaviour
             return;
 
         // 現在の段階を計算（撃破数 ÷ 閾値）
-        int colorIndex = Mathf.Min(colorList.Count - 1, killCount / threshold);
+        int colorIndex = Mathf.Min(ColorsList.Count - 1, killCount / threshold);
 
         // バーの色を現在の段階に対応する色に設定
-        CountGaugeImage.color = colorList[colorIndex];
+        CountGaugeImage.color = ColorsList[colorIndex];
 
         // 背景色の設定（前の段階の色を使用、最初の段階の場合はそのまま）
         if (colorIndex > 0)
-            backGroundImage.color = colorList[colorIndex - 1];
+            BackGroundImage.color = ColorsList[colorIndex - 1];
 
         // 最終段階でない場合、現在の段階内での進行度を計算してバーを更新
-        if (colorIndex < colorList.Count - 1)
+        if (colorIndex < ColorsList.Count - 1)
             UpdateBar(Mathf.Clamp01((float)(killCount % threshold) / threshold));
     }
 

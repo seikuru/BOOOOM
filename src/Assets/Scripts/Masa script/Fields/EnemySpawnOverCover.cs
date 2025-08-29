@@ -12,7 +12,7 @@ public class EnemySpawnOverCover : MonoBehaviour
 
     [SerializeField] Transform[] SpawnTransform; // スポーン地点の配列
 
-    [SerializeField] EnemySpawnCounter enemySpawnCounter; // 敵カウンター管理クラス
+    [SerializeField] EnemyInstanceCounter enemyInstanceCounter; // 敵カウンター管理クラス
 
     [SerializeField] float SpawnIntarval = 2f; // スポーン間隔（秒）
 
@@ -98,8 +98,8 @@ public class EnemySpawnOverCover : MonoBehaviour
                 // 敵オブジェクトを生成
                 GameObject enemy = Instantiate(EnemyPrehab, SpawnTransform[i].transform.position, Quaternion.Euler(0f, 0f, 0f));
 
-                // スポーンカウンターに敵を登録
-                enemySpawnCounter.AddEnemyObject(enemy);
+                // 敵カウンターに敵を登録
+                enemyInstanceCounter.AddEnemyObject(enemy);
             }
         }
     }
