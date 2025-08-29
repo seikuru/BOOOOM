@@ -199,3 +199,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throughTime: 0.2
+  BombCollider: {fileID: 360986648033660454}
