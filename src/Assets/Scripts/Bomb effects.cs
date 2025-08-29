@@ -73,7 +73,7 @@ public class Bombeffects : MonoBehaviour
 
         for (int i = 0; i < P.Length; i++)
         {
-            //Debug.Log("Obstacle" + P[i].tag);
+            Debug.Log("Obstacle" + P[i].tag);
             if (P[i].tag == "Obstacle")
             {
                 if (P[i].TryGetComponent<ObstacleExplosion>(out ObstacleExplosion obstacle))

@@ -133,11 +133,11 @@ GameObject:
   - component: {fileID: 56299710}
   - component: {fileID: 56299718}
   - component: {fileID: 56299714}
-  - component: {fileID: 56299717}
   - component: {fileID: 56299716}
   - component: {fileID: 56299715}
+  - component: {fileID: 56299717}
   m_Layer: 7
-  m_Name: Capsule
+  m_Name: player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -782,20 +782,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4139013036789186053, guid: 8477889b6ad91324fbc9fd9f2b5157a2, type: 3}
       propertyPath: m_Name
-      value: Cube
+      value: enemy
       objectReference: {fileID: 0}
     - target: {fileID: 6975119401278478508, guid: 8477889b6ad91324fbc9fd9f2b5157a2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.81
-
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6975119401278478508, guid: 8477889b6ad91324fbc9fd9f2b5157a2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6975119401278478508, guid: 8477889b6ad91324fbc9fd9f2b5157a2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6975119401278478508, guid: 8477889b6ad91324fbc9fd9f2b5157a2, type: 3}
       propertyPath: m_LocalRotation.w
