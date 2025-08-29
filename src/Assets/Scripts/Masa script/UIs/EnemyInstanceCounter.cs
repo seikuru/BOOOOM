@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class EnemySpawnCounter : MonoBehaviour
+public class EnemyInstanceCounter : MonoBehaviour
 {
     /// 敵のスポーン・撃破管理クラス
     /// 敵オブジェクトの追加・削除を監視し、撃破カウントとUI表示を管理する
@@ -15,7 +15,7 @@ public class EnemySpawnCounter : MonoBehaviour
 
     [SerializeField] int ClearValue = 20; // クリアに必要な撃破数
 
-    [SerializeField] int toLillCountThreshold = 15; // ゲージ色変化の閾値
+    [SerializeField] int ToLillCountThreshold = 10; // ゲージ色変化の閾値
 
     [SerializeField] UnityEvent ClearEvent; // クリア時に実行されるイベント
 
@@ -96,6 +96,6 @@ public class EnemySpawnCounter : MonoBehaviour
 
         // ゲージUIの色更新（閾値に基づく）
         if (killCountGauge != null)
-            killCountGauge.UpdateColor(KillCount, toLillCountThreshold);
+            killCountGauge.UpdateColor(KillCount, ToLillCountThreshold);
     }
 }
