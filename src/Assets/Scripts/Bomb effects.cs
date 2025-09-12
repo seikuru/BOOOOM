@@ -1,6 +1,7 @@
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 
 
 public class Bombeffects : MonoBehaviour
@@ -11,6 +12,10 @@ public class Bombeffects : MonoBehaviour
     [SerializeField] float BombStrange = 5.0f;//爆弾が与える力の大きさ
     [SerializeField] float BombRadius = 10.0f;//爆発の影響の範囲
     [SerializeField] GameObject particle;//爆発した際のパーティクル
+    [SerializeField] Collider bombCollider;
+    [SerializeField] VisualEffect VEffect;//爆発した際のエフェクト
+    [SerializeField] GameObject BombOuter;//爆弾の外枠のオブジェクト
+    [SerializeField] Rigidbody BombRB;//爆弾のRigidBody
     [SerializeField] bool GetKillCount = false;
 
     EnemyCount EnemyCountText;
@@ -113,6 +118,17 @@ public class Bombeffects : MonoBehaviour
             //最後に受けた爆発の影響が出やすくなるように今のVectorに0,7を掛ける
         }
 
-        Destroy(Instantiate(particle, this.transform.position, Quaternion.identity), 2.0f);    
+        if(bombCollider != null)
+            bombCollider.enabled = false;
+        if (BombRB != null)
+            BombRB.isKinematic = true;
+        if (particle != null)
+            Destroy(Instantiate(particle, this.transform.position, Quaternion.identity), 2.0f);
+        if (VEffect != null)
+            VEffect.SendEvent("OnPlay");
+        if (BombOuter != null)
+            BombOuter.SetActive(false);
+
+        Destroy(gameObject, 2f);
     }
 }

@@ -123,9 +123,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3268544491426306342}
+  - component: {fileID: 6530253593774039959}
+  - component: {fileID: 7104464763104517611}
+  - component: {fileID: 1066588395531623786}
+  - component: {fileID: 5067167621653919192}
   m_Layer: 0
   m_Name: Bomb
-  m_TagString: Untagged
+  m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,6 +153,92 @@ Transform:
   - {fileID: 8812981436285873910}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &6530253593774039959
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3672593736015811124}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &7104464763104517611
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3672593736015811124}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
+--- !u!114 &1066588395531623786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3672593736015811124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79bf9ee31d9db434a84c558882dbb70e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InfluencedMask:
+    serializedVersion: 2
+    m_Bits: 0
+  DestroyEnemyTimer: 3
+  BombStrange: 5
+  BombRadius: 10
+  particle: {fileID: 0}
+  bombCollider: {fileID: 6530253593774039959}
+  VEffect: {fileID: 8959692598886482616}
+  BombOuter: {fileID: 352715542732010125}
+  BombRB: {fileID: 7104464763104517611}
+  GetKillCount: 0
+--- !u!114 &5067167621653919192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3672593736015811124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a89fdfc38075fa458b40f1b6a722a8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throughTime: 0.2
+  BombCollider: {fileID: 6530253593774039959}
 --- !u!1 &4004615901524930672
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,8 +281,8 @@ VisualEffect:
   m_GameObject: {fileID: 4004615901524930672}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 0204508a2b662b8438285438b86bd4ce, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_AllowInstancing: 1
@@ -276,15 +366,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 58c3db60fef44ee40aed57ff7d927444, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.049497
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 58c3db60fef44ee40aed57ff7d927444, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.049497
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 58c3db60fef44ee40aed57ff7d927444, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.049497
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 58c3db60fef44ee40aed57ff7d927444, type: 3}
       propertyPath: m_LocalPosition.x
@@ -334,11 +424,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bomb1_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58c3db60fef44ee40aed57ff7d927444, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58c3db60fef44ee40aed57ff7d927444, type: 3}
+--- !u!1 &352715542732010125 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 58c3db60fef44ee40aed57ff7d927444, type: 3}
+  m_PrefabInstance: {fileID: 586718350541967324}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1130060760798242871 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 58c3db60fef44ee40aed57ff7d927444, type: 3}

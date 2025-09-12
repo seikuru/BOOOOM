@@ -1,8 +1,6 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class bomb : MonoBehaviour
 {
@@ -20,7 +18,7 @@ public class bomb : MonoBehaviour
     bool JumpCoolDown = false;
     float JumpCoolDownTimer = 0;
 
-     Queue<GameObject> BombsQueue;
+    Queue<Bombeffects> BombsQueue;
     Rigidbody PlayerRigidbody;
 
     public struct QuaternionSlape 
@@ -60,7 +58,7 @@ public class bomb : MonoBehaviour
         // 直接速度に慣性を加算したい場合
         // Bomb_rb.linearVelocity += _Inertia;
 
-        BombsQueue.Enqueue(Spawned_Bomb);
+        BombsQueue.Enqueue(Spawned_Bomb.GetComponent<Bombeffects>());
     }
 
     public void InstantiateBomb(float percentage, Vector3 direction, Quaternion rotation)
@@ -92,7 +90,7 @@ public class bomb : MonoBehaviour
         // 慣性（プレイヤーの移動速度）を追加で加算
         Bomb_rb.linearVelocity += _Inertia;
 
-        BombsQueue.Enqueue(Spawned_Bomb);
+        BombsQueue.Enqueue(Spawned_Bomb.GetComponent<Bombeffects>());
     }
 
     void PlayerModelRotate(Quaternion rotation)
@@ -113,24 +111,40 @@ public class bomb : MonoBehaviour
 
     public void DestroyBombs()
     {
-        //GameObject[] Bombs = GameObject.FindGameObjectsWithTag("Bomb");
+        float waitTime = 0f;
 
-        float a = 0.0f;
-
-        foreach (GameObject bombs in BombsQueue)
+        foreach (Bombeffects bombs in BombsQueue)
         {
-            Destroy(bombs, a);
-            a += 0.02f;
+            if(bombs == null) 
+                continue;
+
+            StartCoroutine(DestroyBombsRoutine(waitTime,bombs));
+
+            waitTime += Time.fixedDeltaTime;
         }
 
         BombsQueue.Clear();
     }
 
+    private IEnumerator DestroyBombsRoutine(float WaitTime,Bombeffects bombs)
+    {
+        // FixedUpdate のタイミングまで待機
+        yield return new WaitForSeconds(WaitTime);
+
+        if (bombs != null)
+        {
+            bombs.Bakuhatu();
+            Debug.Log("Bakuhatu");
+        }
+    }
+
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         PlayerRigidbody = this.gameObject.GetComponent<Rigidbody>();
-        BombsQueue = new Queue<GameObject>();
+        BombsQueue = new Queue<Bombeffects>();
         slapesQueue = new Queue<QuaternionSlape>();
     }
 

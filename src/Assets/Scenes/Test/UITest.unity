@@ -228,7 +228,7 @@ Transform:
   m_GameObject: {fileID: 56299709}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c680cc8185fd5d5438afcfa938578e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bomb: {fileID: 475757326369631188, guid: eea6cd15a02f5524da1ef6d74e962ece, type: 3}
+  Bomb: {fileID: 3672593736015811124, guid: 05c3f7b033a51d24eb1ecf500d2291d8, type: 3}
   ThrowBombSpawnPosition: {fileID: 476180550}
   JumpBombSpawnPosition: {fileID: 182761600}
   BrinkBombSpawnPosition: {fileID: 578363943}
@@ -1512,7 +1512,7 @@ PrefabInstance:
       objectReference: {fileID: 56299714}
     - target: {fileID: 892774487872043940, guid: debb35ea07dd7694b89e0c8318484e11, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 892774487872043940, guid: debb35ea07dd7694b89e0c8318484e11, type: 3}
       propertyPath: playerAction
@@ -1532,7 +1532,7 @@ PrefabInstance:
       objectReference: {fileID: 56299714}
     - target: {fileID: 6517762818485769081, guid: debb35ea07dd7694b89e0c8318484e11, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6517762818485769081, guid: debb35ea07dd7694b89e0c8318484e11, type: 3}
       propertyPath: playerAction
