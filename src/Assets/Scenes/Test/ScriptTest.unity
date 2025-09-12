@@ -802,9 +802,9 @@ GameObject:
   - component: {fileID: 1568057241}
   - component: {fileID: 1568057239}
   - component: {fileID: 1568057240}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Cylinder
-  m_TagString: enemy
+  m_TagString: Noize
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
