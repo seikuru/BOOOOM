@@ -8,28 +8,14 @@ public class bomb : MonoBehaviour
     [SerializeField] GameObject ThrowBombSpawnPosition;//前に投げる際に参照する位置
     [SerializeField] GameObject JumpBombSpawnPosition;//下に投げる際に参照する位置
     [SerializeField] GameObject BrinkBombSpawnPosition;//後ろに投げる際に参照する位置
-    [SerializeField] GameObject PlayerModelObject;
     [SerializeField] float Bombthrow;//爆弾を投げる強さ
     [SerializeField] float Underthrow = 3f;
-    [SerializeField] float JumpCoolDownTime = 5;
     [SerializeField] float spawnDistance = 2f;
     [SerializeField] bool InputFlag = false;//パソコン操作時に下に投げるかどうかの判定に用いているflag
-    [SerializeField] int SlapeFlame = 6;
-    bool JumpCoolDown = false;
-    float JumpCoolDownTimer = 0;
 
     Queue<Bombeffects> BombsQueue;
     Rigidbody PlayerRigidbody;
-
-    public struct QuaternionSlape 
-    {
-        public Quaternion player;
-        public Quaternion Look;
-
-        public float clamp;
-    }
-    Queue<QuaternionSlape> slapesQueue;
-
+    
     public void InstantiateUnder()
     {
         // float spawnDistance = 2f;
@@ -93,22 +79,6 @@ public class bomb : MonoBehaviour
         BombsQueue.Enqueue(Spawned_Bomb.GetComponent<Bombeffects>());
     }
 
-    void PlayerModelRotate(Quaternion rotation)
-    {
-        slapesQueue = new Queue<QuaternionSlape>();
-
-        for (int i = 0; i <= SlapeFlame; i++)
-        {
-            QuaternionSlape quaternionSlape = new();
-
-            quaternionSlape.player = PlayerModelObject.transform.rotation;
-            quaternionSlape.Look = rotation;
-            quaternionSlape.clamp = (float)i / SlapeFlame;
-           
-            slapesQueue.Enqueue(quaternionSlape);
-        }
-    }
-
     public void DestroyBombs()
     {
         float waitTime = 0f;
@@ -138,29 +108,19 @@ public class bomb : MonoBehaviour
         }
     }
 
-
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         PlayerRigidbody = this.gameObject.GetComponent<Rigidbody>();
         BombsQueue = new Queue<Bombeffects>();
-        slapesQueue = new Queue<QuaternionSlape>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(slapesQueue.Count > 0)
-        {
-            var slape = slapesQueue.Dequeue();
-            var quaternion = Quaternion.Slerp(slape.player, slape.Look, slape.clamp);
-            
-            PlayerModelObject.transform.rotation = quaternion;        
-        }
-
         if (!InputFlag)
             return;
+
 #if UNITY_EDITOR
 
         if ((Input.GetMouseButton(0) && Input.GetMouseButtonUp(1)) || 
@@ -172,57 +132,33 @@ public class bomb : MonoBehaviour
                 (-this.transform.up + this.gameObject.GetComponent<Rigidbody>().linearVelocity
                 , ForceMode.Impulse);
 
+            BombsQueue.Enqueue(Spawned_Bomb.GetComponent<Bombeffects>());
         }
+
         else if (Input.GetMouseButtonUp(0))
         {
-
-
             GameObject Spawned_Bomb;
             Spawned_Bomb = Instantiate(Bomb, ThrowBombSpawnPosition.transform.position, Quaternion.identity);
             Spawned_Bomb.GetComponent<Rigidbody>().AddForce(this.transform.forward * (Bombthrow + this.gameObject.GetComponent<Rigidbody>().linearVelocity.magnitude /** 0.8f*/ ), ForceMode.Impulse);
 
-            
-
+            BombsQueue.Enqueue(Spawned_Bomb.GetComponent<Bombeffects>());
         }
+
         else if (Input.GetMouseButtonUp(1))
         {
-
             GameObject Spawned_Bomb;
             Spawned_Bomb = Instantiate(Bomb, BrinkBombSpawnPosition.transform.position, Quaternion.identity);
             Spawned_Bomb.GetComponent<Rigidbody>().AddForce(-this.transform.forward * 5.0f + this.gameObject.GetComponent<Rigidbody>().linearVelocity, ForceMode.Impulse);
-            
 
+            BombsQueue.Enqueue(Spawned_Bomb.GetComponent<Bombeffects>());
         }
 
-        if (Input.GetKeyUp(KeyCode.Space) )
+        if (Input.GetKeyUp(KeyCode.Space))
         {
-            GameObject[] Bombs = GameObject.FindGameObjectsWithTag("Bomb");
-
-            float a = 0.0f;
-
-            foreach (GameObject bombs in Bombs)
-            {
-                Destroy(bombs, a);
-                a += 0.02f;
-            }
-        }      
+            DestroyBombs();
+        } 
+        
 #endif
-    }
-
-    private void FixedUpdate()
-    {
-        if (JumpCoolDown)
-        {
-            JumpCoolDownTimer += 0.02f;
-
-
-            if (JumpCoolDownTimer >= JumpCoolDownTime)
-            {
-                JumpCoolDown = false;
-                JumpCoolDownTimer = 0;
-            }
-
-        }
 
     }
 }

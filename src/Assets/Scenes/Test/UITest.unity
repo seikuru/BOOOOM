@@ -255,13 +255,10 @@ MonoBehaviour:
   ThrowBombSpawnPosition: {fileID: 476180550}
   JumpBombSpawnPosition: {fileID: 182761600}
   BrinkBombSpawnPosition: {fileID: 578363943}
-  PlayerModelObject: {fileID: 0}
   Bombthrow: 20
   Underthrow: 3
-  JumpCoolDownTime: 5
   spawnDistance: 2
-  InputFlag: 0
-  SlapeFlame: 6
+  InputFlag: 1
 --- !u!114 &56299715
 MonoBehaviour:
   m_ObjectHideFlags: 0
