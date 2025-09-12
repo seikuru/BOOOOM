@@ -24,13 +24,16 @@ public class Bombeffects : MonoBehaviour
     float GetBombAddStrange()
     {
         return BombExtraParameter.GetAddStrange();      
-    } 
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if(InfluencedMask == LayerMask.GetMask()) 
-            InfluencedMask = LayerMask.GetMask("Player", "enemy" , "enemyCore");
+        if (InfluencedMask == LayerMask.GetMask())
+        {
+            InfluencedMask = LayerMask.GetMask("Player", "enemy", "enemyCore");
+        }
+
         if (GameObject.Find("EnemyCount") != null)
         {
             EnemyCountText = GameObject.Find("EnemyCount").GetComponent<EnemyCount>();
