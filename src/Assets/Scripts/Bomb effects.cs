@@ -82,24 +82,25 @@ public class Bombeffects : MonoBehaviour
                     continue;
                 }
             }
-
-            PlayerRigidbodies[i].linearVelocity = PlayerRigidbodies[i].linearVelocity * 0.7f + (P[i].transform.position - this.transform.position).normalized * BombStrangeValue;
-            //最後に受けた爆発の影響が出やすくなるように今のVectorに0,7を掛ける
-
-            if (P[i].tag == "enemy")
+            else if(P[i].tag == "Noize")
+            {
+                Destroy(P[i]);
+                continue;
+            }
+            else if (P[i].tag == "enemy")
             {
 
-                PlayerRigidbodies[i].isKinematic = false;
-                if (P[i].TryGetComponent<EnemiesAttack>(out EnemiesAttack EA))
-                {
-                    EA.willDestoroy = true;
+                 PlayerRigidbodies[i].isKinematic = false;
+                 if (P[i].TryGetComponent<EnemiesAttack>(out EnemiesAttack EA))
+                 {
+                     EA.willDestoroy = true;
                     
-                }
-                if(P[i].TryGetComponent<enemyMove>(out enemyMove EM))
-                {
-                    EM.willDestroy = true;
+                 }
+                 if(P[i].TryGetComponent<enemyMove>(out enemyMove EM))
+                 {
+                     EM.willDestroy = true;
 
-                }
+                 }
 
 
                 Destroy(P[i], DestroyEnemyTimer);//DestoryEnemyTimer秒後に消滅
@@ -109,7 +110,7 @@ public class Bombeffects : MonoBehaviour
                 PlayerRigidbodies[i].linearVelocity = PlayerRigidbodies[i].linearVelocity * 0.1f;
             }
 
-            PlayerRigidbodies[i].linearVelocity = PlayerRigidbodies[i].linearVelocity * 0.7f + (P[i].transform.position - this.transform.position).normalized * BombStrange;
+            PlayerRigidbodies[i].linearVelocity = PlayerRigidbodies[i].linearVelocity * 0.7f + (P[i].transform.position - this.transform.position).normalized * BombStrangeValue;
             //最後に受けた爆発の影響が出やすくなるように今のVectorに0,7を掛ける
         }
 
