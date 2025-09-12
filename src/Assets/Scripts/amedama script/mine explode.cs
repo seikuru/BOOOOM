@@ -13,10 +13,11 @@ public class mineexplode : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (GameObject.FindGameObjectWithTag("Player") != null)
+        Player = GameObject.FindGameObjectWithTag("Player");
+
+        if (Player != null)
         {
-            Player = GameObject.FindGameObjectWithTag("Player");
-            PlayerRigidbody = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
+            PlayerRigidbody = Player.GetComponent<Rigidbody>();
         }
     }
 
