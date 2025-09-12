@@ -41,12 +41,8 @@ public class RingNoize : MonoBehaviour
             };
 
             flat = flat.normalized;
-
-            //rb.velocity = Vector3.zero;
-
-            rb.linearVelocity = Vector3.zero;
-
-            rb.AddForce(flat * AddPowerFlat + Vector3.up * AddPowerY, ForceMode.VelocityChange);
+            
+            rb.linearVelocity = (flat * AddPowerFlat) + (Vector3.up * AddPowerY);
         }
     }
 }

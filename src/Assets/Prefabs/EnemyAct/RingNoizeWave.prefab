@@ -151,5 +151,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScaleUpSpeed: 1
   ScaleUPMax: 10
-  AddPowerFlat: 1
-  AddPowerY: 1
+  AddPowerFlat: 10
+  AddPowerY: 10
