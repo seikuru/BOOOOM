@@ -1,21 +1,24 @@
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 
 
 public class Bombeffects : MonoBehaviour
-{
-    Rigidbody[] PlayerRigidbodies;
+{  
     [SerializeField] LayerMask InfluencedMask;//爆発の影響を受けるレイヤーを指定
     [SerializeField] float DestroyEnemyTimer = 3f;//敵が爆発の影響を受けてから何秒で消えるか
     [SerializeField] float BombStrange = 5.0f;//爆弾が与える力の大きさ
     [SerializeField] float BombRadius = 10.0f;//爆発の影響の範囲
-    [SerializeField] GameObject particle;//爆発した際のパーティクル
+    [SerializeField] Collider bombCollider;
+    [SerializeField] VisualEffect VEffect;//爆発した際のエフェクト
+    [SerializeField] GameObject BombOuter;//爆弾の外枠のオブジェクト
+    [SerializeField] Rigidbody BombRB;//爆弾のRigidBody
     [SerializeField] bool GetKillCount = false;
 
     EnemyCount EnemyCountText;
 
-    public float _bombradius { get { return BombRadius; } set { BombRadius = value; } }
+    // public float _bombradius { get { return BombRadius; } set { BombRadius = value; } }
 
     /// <summary>
     /// 爆弾が与える力の大きさを追加するパラメータの数値を取得
@@ -40,12 +43,6 @@ public class Bombeffects : MonoBehaviour
         }
     }
 
-   
-    // Update is called once per frame
-    void Update()
-    {
-    
-    }
 
     public void Bakuhatu()
     {
@@ -66,7 +63,7 @@ public class Bombeffects : MonoBehaviour
           
         }
 
-        PlayerRigidbodies = new Rigidbody[P.Length];//格納した数だけRigidbodyを宣言
+        Rigidbody[] PlayerRigidbodies = new Rigidbody[P.Length];//格納した数だけRigidbodyを宣言
 
         for (int i = 0; i < P.Length; i++)
         {
@@ -117,6 +114,15 @@ public class Bombeffects : MonoBehaviour
             //最後に受けた爆発の影響が出やすくなるように今のVectorに0,7を掛ける
         }
 
-        Destroy(Instantiate(particle, this.transform.position, Quaternion.identity), 2.0f);    
+        if(bombCollider != null)
+            bombCollider.enabled = false;
+        if (BombRB != null)
+            BombRB.isKinematic = true;
+        if (VEffect != null)
+            VEffect.SendEvent("OnPlay");
+        if (BombOuter != null)
+            BombOuter.SetActive(false);
+
+        Destroy(gameObject, 2f);
     }
 }

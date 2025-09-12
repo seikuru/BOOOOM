@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 1066588395531623786}
   - component: {fileID: 5067167621653919192}
   m_Layer: 0
-  m_Name: Bomb
+  m_Name: Bomb_PC
   m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -217,8 +217,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   DestroyEnemyTimer: 3
-  BombStrange: 5
-  BombRadius: 10
+  BombStrange: 30
+  BombRadius: 20
   particle: {fileID: 0}
   bombCollider: {fileID: 6530253593774039959}
   VEffect: {fileID: 8959692598886482616}
